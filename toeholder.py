@@ -46,15 +46,15 @@ def main():
     args = parser.parse_args()
 
     output_folder = args.output_folder
-    length_paired= args.length_paired
+    length_paired= int(args.length_paired)
     input_seq = args.input_seq
-    length_unpaired = args.length_unpaired
+    length_unpaired = int(args.length_unpaired)
     reporter = args.reporter
     mol_type = args.mol_type
     reference_list = args.reference_list
-    pct_ident = args.pct_ident
-    evalue = args.evalue
-    min_unpaired = args.min_unpaired
+    pct_ident = int(args.pct_ident)
+    evalue = float(args.evalue)
+    min_unpaired = int(args.min_unpaired)
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
