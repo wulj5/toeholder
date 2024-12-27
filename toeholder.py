@@ -28,9 +28,6 @@ import glob
 from toeholder_helper_functions import *
 import argparse
 
-GC_weak = [23, 24, 26, 31]
-GC_strong = [19, 21, 22, 32, 33]
-
 def main():
     parser = argparse.ArgumentParser(description='Toeholder')
     parser.add_argument("-i", "--input_seq", help="input fasta file", required=True)
@@ -43,6 +40,8 @@ def main():
     parser.add_argument("-p", "--pct_ident", help="lower threshold of sequence identity", default=90, required=False)
     parser.add_argument("-e", "--evalue", help="upper threshold for the evalue of hits", default=1e-6, required=False)
     parser.add_argument("-u", "--min_unpaired", help="minimum number of unpaired residues", default=10, required=False)
+    parser.add_argument("-w", "--gc_weak", help="GC weak values", default="23,24,26,31", required=False)
+    parser.add_argument("-s", "--gc_strong", help="GC strong values", default="19,21,22,32,33", required=False)
     args = parser.parse_args()
 
     output_folder = args.output_folder
@@ -55,6 +54,11 @@ def main():
     pct_ident = int(args.pct_ident)
     evalue = float(args.evalue)
     min_unpaired = int(args.min_unpaired)
+
+    gc_weak = args.gc_weak.split(",")
+    gc_strong = args.gc_strong.split(",")
+    GC_weak = [int(e) for e in gc_weak]
+    GC_strong = [int(e) for e in gc_strong]
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
