@@ -290,3 +290,6 @@ def main():
     part4 = ' -p ' + str(pct_ident)
     part5 = ' -e ' + str(evalue)
     os.system(part1 + part2 + part3 + part4 + part5)
+
+if __name__ == '__main__':
+    main()
